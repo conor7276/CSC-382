@@ -10,13 +10,13 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """     
-        if(k > 0):
+        if(k > 0): # how many times to rotate array
             for _ in range(k):
-
+                # pop value to be rotated from the back then insert it to the front
                 nums.insert(0,nums.pop(len(nums)-1))
         else:
-            for _ in range(abs(k)):
-                nums.append(nums.pop(0))
+            for _ in range(abs(k)): # opposite rotation
+                nums.append(nums.pop(0)) # pop value from the front to be rotated at the back
             
 
 
