@@ -3,7 +3,7 @@ import time
 import random
   
 # Function to find the partition position
-def partition(array, low, high):
+def partition(array, low, high, swaps):
   
     # Choose the rightmost element as pivot
     pivot = array[high]
@@ -21,30 +21,35 @@ def partition(array, low, high):
   
             # Swapping element at i with element at j
             (array[i], array[j]) = (array[j], array[i])
-  
+            swaps += 1
+
+    print("arr after pivot ", arr)
     # Swap the pivot element with 
     # e greater element specified by i
     (array[i + 1], array[high]) = (array[high], array[i + 1])
-  
+    swaps += 1
+    print("after partition ", arr)
     # Return the position from where partition is done
     return i + 1
   
 # Function to perform quicksort
   
   
-def quick_sort(array, low, high):
+def quick_sort(array, low, high, swaps):
     if low < high:
   
         # Find pivot element such that
         # element smaller than pivot are on the left
         # element greater than pivot are on the right
-        pi = partition(array, low, high)
+        pi = partition(array, low, high, swaps)
   
         # Recursive call on the left of pivot
-        quick_sort(array, low, pi - 1)
+        quick_sort(array, low, pi - 1,swaps)
   
         # Recursive call on the right of pivot
-        quick_sort(array, pi + 1, high)
+        quick_sort(array, pi + 1, high,swaps)
+
+    return swaps
   
 def randomArray(size):
     arr = []
@@ -58,11 +63,19 @@ def randomArray(size):
 # Driver Code
 if __name__ == '__main__':
 
-    for i in range(0,10001,1000):
-        arr = randomArray(i)
-        start = time.time()
-        swaps = 0
-        quick_sort(arr,0,len(arr)-1)
-        end = time.time()
-        print("Time taken for merge sort: ", end-start, " ", "with array size ", i, " and this many swaps " , swaps)
+    # for i in range(0,10001,1000):
+    #     arr = randomArray(i)
+    #     start = time.time()
+    #     swaps = 0
+    #     quick_sort(arr,0,len(arr)-1)
+    #     end = time.time()
+    #     print("Time taken for merge sort: ", end-start, " ", "with array size ", i, " and this many swaps " , swaps)
+
+    arr = [10,80,30,90,40,50,70]
+    start = time.time()
+    swaps = 0
+    swaps = quick_sort(arr,0,len(arr)-1,swaps)
+    end = time.time()
+    print("Time taken for quick sort: ", end-start, " ", "with array size ", 7, " and this many swaps " , swaps)
+    print(arr)
 

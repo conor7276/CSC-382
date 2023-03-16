@@ -33,7 +33,11 @@ def randomArray(size):
     #print(arr)
     return arr
 
-for i in range(0, 10001, 1000):
-    arr = randomArray(i)
-    insertionSort(arr)
+
+
+arr = randomArray(5)
+insertionSort(arr)
+# for i in range(0, 10001, 1000):
+#     arr = randomArray(i)
+#     insertionSort(arr)
 #print(insertionSort(arr))
