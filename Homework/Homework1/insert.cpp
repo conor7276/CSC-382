@@ -69,8 +69,9 @@ void run( int size, int times )
 
 int main()
 {
-    for ( int i = 1000; i < 10000; i += 1000 )
-        run(i, 500);
+    // for ( int i = 1000; i < 10000; i += 1000 )
+    //     run(i, 500);
     
-    return 0;
+    // return 0;
+    run(10000,500);
 }
