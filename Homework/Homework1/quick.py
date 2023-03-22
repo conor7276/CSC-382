@@ -60,7 +60,7 @@ def randomArray(size):
     arr = []
 
     for _ in range(size):
-        arr.append(random.randint(0,100000000))
+        arr.append(random.randint(0,10000))
 
     #print(arr)
     return arr
@@ -79,7 +79,6 @@ if __name__ == '__main__':
     #     print("Time taken for merge sort: ", round(end-start,2), " seconds ", "with array size ", i, " and this many swaps " , sum(swaps))
 
     process = psutil.Process(os.getpid())
-    # arr = [10,80,30,90,40,50,70]
     arr = randomArray(10000)
     start = time.time()
     swaps = []
@@ -87,5 +86,5 @@ if __name__ == '__main__':
     end = time.time()
     print("Time taken for quick sort: ", round(end-start,2), " seconds ", "with array size ", len(arr), " and this many swaps " , sum(swaps))
     print("Memory usage: ", process.memory_full_info().rss / 1000000, " MB")
-    #print(arr)
+    
 

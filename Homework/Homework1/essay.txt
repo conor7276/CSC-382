@@ -1,0 +1,4 @@
+ talk about 3 sorts and what they are by comparing runtimes, swaps, and memory usage
+ graph chart
+ time comparison with small number range
+ time comparison with larger number range
