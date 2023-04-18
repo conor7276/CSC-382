@@ -48,7 +48,7 @@ def randomArray(size):
 # Driver code
 if __name__ == '__main__':
     process = psutil.Process(os.getpid())
-    arr = randomArray(4)
+    arr = randomArray(10000)
     start = time.time()
     ans = count_sort(arr)
     end = time.time()

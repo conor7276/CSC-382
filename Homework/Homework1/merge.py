@@ -55,14 +55,7 @@ def mergeSort(arr,swaps):
     return 0
         
     
-# Code to print the list
-  
-def printList(arr):
-    for i in range(len(arr)):
-        print(arr[i], end=" ")
-    print()
-  
-
+# generate random numbers for array
 def randomArray(size):
     arr = []
 
@@ -74,7 +67,7 @@ def randomArray(size):
 
 # Driver Code
 
-
+# code for looping from array sizes 0 to 10000
 # for i in range(0,10001,1000):
 #     arr = randomArray(i)
 #     start = time.time()
@@ -82,17 +75,17 @@ def randomArray(size):
 #     swaps = mergeSort(arr,swaps)
 #     end = time.time()
 #     print("Time taken for merge sort: ", round(end-start,2), " seconds", "with array size ", i, " and this many swaps " , swaps)
+
+# code used for comparisons
 process = psutil.Process(os.getpid())
-arr = randomArray(100)
-# arr = [38,27,43,3,9,82,10]
-#print(arr)
+arr = randomArray(10000)
 start = time.time()
 swaps = 0
 swaps = mergeSort(arr,swaps=0)
 end = time.time()
-print("Time taken for merge sort: ", round(end-start), " seconds ", "with array size ", len(arr), " and this many swaps " , swaps)
+print("Time taken for merge sort: ", round(end-start,2), " seconds ", "with array size ", len(arr), " and this many swaps " , swaps)
 print("Memory usage: ", process.memory_full_info().rss / 1000000, " MB")
-#print(arr)
+
 
         
 
