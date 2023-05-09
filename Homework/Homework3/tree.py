@@ -59,54 +59,27 @@ def main():
     # target3.printNode()
 
     print(Tree[source].adjacent)
-    #print(dfs(source,Tree))
+    print(dfs(source,Tree))
 
 def dfs(source,Tree):
-    leaf_nodes = []
+    s = []
+    closest_leafs = []
+    s.append(source + 1)
     depth = 0
-    curr = source
-    prev = 0
-    def dfsHelper(curr,Tree,depth,leaf_nodes, prev, source):
-        depth += 1
-        # if(len(Tree[curr].adjacent) == 1 and Tree[curr].adjacent[0] == source):
-        #     return
-        for node in Tree[curr].adjacent:
-            for point in range(len(Tree)):
-                Tree[point].printNode()
-            Tree[node[0]].printNode()
-            #print("curr: ", curr + 1, " prev: ", prev + 1)
-            #print(node[0])
-            #print(type(node), " ", node)
-            if Tree[node[0]].explored == 'W':
-                Tree[node[0]].explored = 'G'
-                leaf_nodes.append([node[0],node[1],depth])
-                #print([node[0], node[1],depth])
-                prev = curr
+    while s:
+        v = s.pop()
+        print(v, " about to check this pls no out of bounds")
+        if Tree[v-1].explored == 'W':
+            print("New node discovered: ", v)
+            Tree[v-1].explored = 'G'
+            depth += 1
+            for edge in Tree[v-1].adjacent:
+                print(edge)
+                s.append(edge[0])
                 
-                dfsHelper(node[0] - 1,Tree,depth,leaf_nodes, prev,source)
-        return
-    
-    dfsHelper(curr,Tree,depth,leaf_nodes, prev, source)
-    return leaf_nodes
-    
-
-
-def bestfs():
-    pass
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if __name__ == "__main__":
-    main()
+                if(len(Tree[v-1].adjacent) == 1 and edge[0] not in closest_leafs):
+                    closest_leafs.append([edge[0], depth])
+        else:
+            print("skipping node ", v, " already explored.")
+            depth -= 1
+    print("Closest leafs: ", closest_leafs)
