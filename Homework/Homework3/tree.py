@@ -9,7 +9,7 @@ class TreeNode:
 
 def main():
     Tree = []
-    for i in range(1,16):
+    for i in range(1,1001):
         node = TreeNode(i,[])
         Tree.append(node)
         if len(Tree) == 1:
@@ -34,29 +34,6 @@ def main():
             break
     #targets.remove(source)
     print(source + 1, " is a leaf node")
-    #print(targets)
-    # source = random.randint(0,len(Tree) - 1)
-    # target1 = source
-    # target2 = source
-    # target3 = source
-    # while(target1 == source):
-    #     target1 = random.randint(0,len(Tree) - 1)
-    
-    # while(target2 == source and target2 != target1):
-    #     target2 = random.randint(0,len(Tree) - 1)
-
-    # while(target3 == source and target3 != target1 and target3 != target2):
-    #     target3 = random.randint(0,len(Tree) - 1)
-
-    # source = Tree[source]
-    # target1 = Tree[target1]
-    # target2 = Tree[target2]
-    # target3 = Tree[target3]
-    # print("Printing randomly selected nodes: ")
-    # source.printNode()
-    # target1.printNode()
-    # target2.printNode()
-    # target3.printNode()
 
     print(Tree[source].adjacent)
     print(dfs(source,Tree))
@@ -68,18 +45,52 @@ def dfs(source,Tree):
     depth = 0
     while s:
         v = s.pop()
-        print(v, " about to check this pls no out of bounds")
+        #print(v, " about to check this pls no out of bounds")
         if Tree[v-1].explored == 'W':
             print("New node discovered: ", v)
             Tree[v-1].explored = 'G'
             depth += 1
+            print("we are going deeper: ", depth)
             for edge in Tree[v-1].adjacent:
                 print(edge)
                 s.append(edge[0])
                 
-                if(len(Tree[v-1].adjacent) == 1 and edge[0] not in closest_leafs):
-                    closest_leafs.append([edge[0], depth])
+            if(len(Tree[v-1].adjacent) == 1 and [edge[0], depth] not in closest_leafs):
+                closest_leafs.append([edge[0], depth])
         else:
             print("skipping node ", v, " already explored.")
             depth -= 1
-    print("Closest leafs: ", closest_leafs)
+            print("arising from the ashes: ", depth)
+    print("Closest leafs in order: ", closest_leafs)
+
+
+
+def bestfs(source,Tree):
+    Tree[source - 1].explored = 'G'
+    queue = []
+    queue.append(Tree[source-1])
+    while queue:
+        min = 2
+        min_node = 0
+        for node in queue:
+            if(node.adjacent[1] < min):
+                min = node.adjacent[1]
+                min_node = node.adjacent[0]
+        curr = min_node
+        curr = queue.remove(curr)
+        for node in Tree[curr[min_node].adjacent[0] - 1]:
+            if node.explored != 'G':
+                if node.adjacent[1] < min:
+                    min = node.adjacent[1]
+                else:
+                    node.explored = 'G'
+                    queue.append(node)
+
+            
+
+
+
+
+
+if __name__ == '__main__':
+    main()
